@@ -3,6 +3,7 @@ package main
 import "fmt"
 import "log"
 import "fileaverager/readfile"
+import "fileaverager/averager"
 
 func main(){
 	filename := "data.txt"
@@ -10,5 +11,6 @@ func main(){
 	if err != nil{
 		log.Fatal(err)
 	}
-	fmt.Println(numbers)
+	average := averager.FloatAverage(numbers)
+	fmt.Println(average)
 }
