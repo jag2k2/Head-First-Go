@@ -17,4 +17,14 @@ func main() {
 	fmt.Println(letters[1])
 	fmt.Println(floats[0])
 	fmt.Println(floats[1])
+	fmt.Println(numbers, letters, floats)
+	for i:=0; i<len(numbers); i++ {
+		fmt.Println(i, numbers[i])
+	}
+	for index, value := range numbers {
+		fmt.Println(index, value)
+	}
+	for _, value := range numbers {
+		fmt.Println(value)
+	}
 }
