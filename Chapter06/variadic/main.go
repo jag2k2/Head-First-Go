@@ -10,6 +10,6 @@ func main() {
 	severalStrings()
 }
 
-func severalStrings(strings ...string) {
+func severalStrings(strings ...string) {	// strings is a slice of type `string`
 	fmt.Println(strings)
 }
