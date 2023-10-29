@@ -13,6 +13,9 @@ func main() {
 	for _, line := range contents {
 		ranks[line]++
 	}
-	fmt.Println(ranks)
+	
+	for name, votes := range ranks {
+		fmt.Printf("%s got %d votes\n", name, votes)
+	} 
 }
 
