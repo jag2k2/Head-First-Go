@@ -1,15 +1,10 @@
 package main
 
 import "fmt"
-
-type subscriber struct {
-	name 	string
-	rate 	float64
-	active 	bool
-}
+import "subscriber/magazine"
 
 func main() {
-	var subscriber1 *subscriber = defaultSubscriber("Aman Singh")
+	var subscriber1 *magazine.Subscriber = defaultSubscriber("Aman Singh")
 	applyDiscount(subscriber1)
 	printInfo(subscriber1)
 
@@ -17,20 +12,17 @@ func main() {
 	printInfo(subscriber2)
 }
 
-func printInfo(sub *subscriber) {
-	fmt.Println("Name:", sub.name)
-	fmt.Println("Monthly rate:", sub.rate)
-	fmt.Println("Active?", sub.active)
+func printInfo(sub *magazine.Subscriber) {
+	fmt.Println("Name:", sub.Name)
+	fmt.Println("Monthly rate:", sub.Rate)
+	fmt.Println("Active?", sub.Active)
 }
 
-func defaultSubscriber(name string) *subscriber {
-	var sub subscriber
-	sub.name = name
-	sub.rate = 5.99
-	sub.active = true
+func defaultSubscriber(name string) *magazine.Subscriber {
+	var sub magazine.Subscriber = magazine.Subscriber{Name: name, Rate: 5.99, Active: true}
 	return &sub
 }
 
-func applyDiscount(sub *subscriber) {
-	sub.rate = 4.99
+func applyDiscount(sub *magazine.Subscriber) {
+	sub.Rate = 4.99
 }
