@@ -13,7 +13,7 @@ func (person Person) sayHi() {
 
 type Dog string
 
-func (dog Dog) barkHi() {
+func (dog Dog) barkHi() {					// receiver parameter is used instead of "self" or "this" seen in other languages
 	fmt.Println("Woof! My name is", dog)
 }
 
