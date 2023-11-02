@@ -10,9 +10,9 @@ func NewDecepticon(name string) *Decepticon {
 	return &Decepticon{name: name}
 }
 
-func (decepticon Decepticon) MakeSound() {
+func (decepticon *Decepticon) MakeSound() {
 	fmt.Println(decepticon.name, "- Get the Energon cubes!")
 }
-func (decepticon Decepticon) Walk() {
+func (decepticon *Decepticon) Walk() {
 	fmt.Println(decepticon.name, "- Klunk Kloonk")
 }
