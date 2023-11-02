@@ -7,27 +7,20 @@ import (
 )
 
 func main() {
-	date := day.Date{}
-	err := date.SetYear(2019)
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = date.SetMonth(5)
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = date.SetDay(30)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(date)
-
 	event := day.Event{}
-	event.SetTitle("Jeffs Birthday")
+	err := event.SetTitle("Jeffs Birthday")
 	if err != nil {
 		log.Fatal(err)
 	}
 	err = event.SetYear(2019)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = event.SetMonth(4)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = event.SetDay(12)
 	if err != nil {
 		log.Fatal(err)
 	}
