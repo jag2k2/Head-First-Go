@@ -1,19 +1,35 @@
 package main
 
-import "fmt"
-
-type Date struct {
-	Year  int
-	Month int
-	Day   int
-}
-
-func (d *Date) SetYear(year int) { // setters need pointer to receivers because parameters are pass by value
-	d.Year = year
-}
+import (
+	"calendar/day"
+	"fmt"
+	"log"
+)
 
 func main() {
-	date := Date{}
-	date.SetYear(2019)
-	fmt.Println(date.Year)
+	date := day.Date{}
+	err := date.SetYear(2019)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = date.SetMonth(5)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = date.SetDay(30)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(date)
+
+	event := day.Event{}
+	event.SetTitle("Jeffs Birthday")
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = event.SetYear(2019)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(event)
 }
