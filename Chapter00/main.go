@@ -43,6 +43,14 @@ func (g *Graph) Sum() int {
 	return sum
 }
 
+func (g *Graph) Psum(ch chan int) {
+	sum := 0
+	for _, n := range g.nodes {
+		sum += len(n.props)
+	}
+	ch <- sum
+}
+
 func main() {
 	n1 := NewNode("today")
 	n2 := NewNode("tomorrow")
@@ -69,6 +77,8 @@ func main() {
 	// 	fmt.Printf("%v\n", s.Size())
 	// }
 
-	fmt.Printf("%d\n", g.Sum())
-
+	ch := make(chan int)
+	go g.Psum(ch)
+	sum := <-ch
+	fmt.Printf("%d\n", sum)
 }
