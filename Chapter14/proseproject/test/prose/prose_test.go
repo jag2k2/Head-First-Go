@@ -6,6 +6,15 @@ import (
 	"testing"
 )
 
+func TestOneElement(t *testing.T) {
+	list := []string{"apple"}
+	got := prose.JoinWithCommas(list)
+	want := "apple"
+	if got != want {
+		t.Errorf(errorString(list, got, want))
+	}
+}
+
 func TestTwoElements(t *testing.T) {
 	list := []string{"apple", "orange"}
 	got := prose.JoinWithCommas(list)
