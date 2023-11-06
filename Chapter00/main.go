@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+)
 
 type Sizeable interface {
 	Size() int
@@ -51,6 +54,22 @@ func (g *Graph) Psum(ch chan int) {
 	ch <- sum
 }
 
+func (g *Graph) Qsum(ch chan<- int) {
+	defer close(ch)
+	for _, n := range g.nodes {
+		ch <- len(n.props)
+	}
+	close(ch)
+}
+
+func (g *Graph) Helph(w http.ResponseWriter, r *http.Request) { // these are called entry points!!
+	fmt.Fprintf(w, "help response\n")
+}
+
+func (g *Graph) Sizeh(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "size=%d\n", g.Size())
+}
+
 func main() {
 	n1 := NewNode("today")
 	n2 := NewNode("tomorrow")
@@ -77,8 +96,19 @@ func main() {
 	// 	fmt.Printf("%v\n", s.Size())
 	// }
 
-	ch := make(chan int)
-	go g.Psum(ch)
-	sum := <-ch
-	fmt.Printf("%d\n", sum)
+	// ch := make(chan int)
+	// go g.Psum(ch)
+	// sum := <-ch
+	// fmt.Printf("%d\n", sum)
+
+	// sum := 0
+	// go g.Qsum(ch)
+	// for v := range ch {
+	// 	sum += v
+	// }
+	// fmt.Printf("%d\n", sum)
+
+	http.HandleFunc("/help", g.Helph)
+	http.HandleFunc("/size", g.Sizeh)
+	http.ListenAndServe(":8080", nil)
 }
